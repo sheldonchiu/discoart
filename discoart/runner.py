@@ -72,8 +72,12 @@ def do_run(
         try:
             try:
                 input_resolution = clip_model.visual.input_resolution
+                if type(input_resolution) == tuple:
+                    input_resolution = input_resolution[0]
             except:
                 input_resolution = clip_model.visual.image_size
+                if type(input_resolution) == tuple:
+                    input_resolution = input_resolution[0]
             logger.debug(f'input_resolution of {model_name}: {input_resolution}')
         except:
             input_resolution = 224
